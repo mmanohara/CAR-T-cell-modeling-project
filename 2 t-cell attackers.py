@@ -11,11 +11,6 @@ represented in the program as c1, EGFR
 as c2, and Il13ra2 as c3. Images are
 to be saved and compiled into a movie file.
 """
-"""
-Things to do:
-Gaussian smoothen each rectangle to remove insane gradients.
-Then, play with parameters and analyze.
-"""
 import matplotlib
 matplotlib.use('TkAgg')
 from pylab import *
@@ -39,9 +34,11 @@ dt = 0.01#temporal resolution
 q =  25#T-cell distribution coefficient
 xvalues, yvalues = meshgrid(arange(0, 1.02, .01), arange(0, 1.02, .01))#define x and y values in space
 def initialize():
-	‘’’These variables have the same usage as those in the samelocbiCAR file, 
+    “””
+    These variables have the same usage as those in the samelocbiCAR file, 
 so check that out if you need a reminder. However, there are 2 t-cell species 
-(t1 and t3) that targets ONLY t1 and t3, respectively. This allows for 2 uniCAR t-cells.’’’
+(t1 and t3) that targets ONLY t1 and t3, respectively. This allows for 2 uniCAR t-cells.
+    “””
     global t1, t3, c0, c1, c2, c3, cco, ctotal, nextt1, nextt3, nextc0, nextc1, nextc2, nextc3, nextcco, nextctotal, ttotal, c0total, c1total, c2total, c3total, ccototal, tplot, c0plot, c1plot, c2plot, c3plot, ccoplot, step, check, tmax, c0max, c1max, c2max, c3max, ccomax, tpend, c0pend, c1pend, c2pend, c3pend, ccopend, steppend
     t1 = zeros([n, n])#define variables as 102x102 arrays.
     t3 = zeros([n, n])

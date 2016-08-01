@@ -10,6 +10,7 @@ of the interaction between CAR T-cells and
 represented in the program as c1, EGFR 
 as c2, and Il13ra2 as c3. Images are
 to be saved and compiled into a movie file.
+The target antigens are switched with each dose.
 """
 import matplotlib
 matplotlib.use('TkAgg')
