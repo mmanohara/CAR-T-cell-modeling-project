@@ -44,7 +44,7 @@ def initialize():
     tmax, c0max, c1max, c2max, c3max, ccomax: max value of variables
     tpend, c0pend, c1pend, c2pend, c3pend, ccopend, steppend: lists of total population sizes to plot
     '''
-    global t, c0, c1, c2, c3, cco, ctotal, \#variables
+    global t, c0, c1, c2, c3, cco, ctotal, \
            nextt, nextc0, nextc1, nextc2, nextc3, nextcco, nextctotal, \
            ttotal, c0total, c1total, c2total, c3total, ccototal, \
            tplot, c0plot, c1plot, c2plot, c3plot, ccoplot, \
