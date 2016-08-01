@@ -39,7 +39,9 @@ dt = 0.01#temporal resolution
 q =  25#T-cell distribution coefficient
 xvalues, yvalues = meshgrid(arange(0, 1.02, .01), arange(0, 1.02, .01))#define x and y values in space
 def initialize():
-	‘’’These variables have the same usage as those in the samelocbiCAR file, so check that out if you need a reminder. However, there are 2 t-cell species (t1 and t3) that targets ONLY t1 and t3, respectively. This allows for 2 uniCAR t-cells.’’’
+	‘’’These variables have the same usage as those in the samelocbiCAR file, 
+so check that out if you need a reminder. However, there are 2 t-cell species 
+(t1 and t3) that targets ONLY t1 and t3, respectively. This allows for 2 uniCAR t-cells.’’’
     global t1, t3, c0, c1, c2, c3, cco, ctotal, nextt1, nextt3, nextc0, nextc1, nextc2, nextc3, nextcco, nextctotal, ttotal, c0total, c1total, c2total, c3total, ccototal, tplot, c0plot, c1plot, c2plot, c3plot, ccoplot, step, check, tmax, c0max, c1max, c2max, c3max, ccomax, tpend, c0pend, c1pend, c2pend, c3pend, ccopend, steppend
     t1 = zeros([n, n])#define variables as 102x102 arrays.
     t3 = zeros([n, n])
@@ -222,7 +224,8 @@ def update():
             c3LapNum = c3U + c3D + c3R + c3L - 4 * c3C
             ccoLapNum = ccoU + ccoD + ccoR + ccoL - 4 * ccoC
             #Be warned; the next few equations are HORRIFYINGLY LONG. Have a good day :) 
-	     ‘’’The equation terms are the same as in the samelocbiCAR file. Look there for more information. Mainly cause I’m lazy to comment all of the m.’’’
+	     ‘’’The equation terms are the same as in the samelocbiCAR file. 
+Look there for more information. Mainly cause I’m lazy to comment all of them.’’’
             nextt1[x, y] = t1C + (-d * t1C - mu1 * (((t1R - t1L) / (2 * dh))*((c1R - c1L) / (2 * dh)) + ((t1U - t1D) / (2 * dh)) * ((c1U - c1D) / (2 * dh)) + t1C * (c1LapNum / dh**2)) - muco * (((t1R - t1L) / (2 * dh))*((ccoR - ccoL) / (2 * dh)) + ((t1U - t1D) / (2 * dh)) * ((ccoU - ccoD) / (2 * dh)) + t1C * (ccoLapNum / dh**2)) + Dt * (t1LapNum/dh**2)) * dt
             nextt3[x, y] = t3C + (-d * t3C - mu3 * (((t3R - t3L) / (2 * dh))*((c3R - c3L) / (2 * dh)) + ((t3U - t3D) / (2 * dh)) * ((c3U - c3D) / (2 * dh)) + t3C * (c3LapNum / dh**2)) - muco * (((t3R - t3L) / (2 * dh))*((ccoR - ccoL) / (2 * dh)) + ((t3U - t3D) / (2 * dh)) * ((ccoU - ccoD) / (2 * dh)) + t3C * (ccoLapNum / dh**2)) + Dt * (t3LapNum/dh**2)) * dt
             nextc0[x, y] = c0C + (a * c0C * (1 - (ctotalC)/K) + Dc * (c0LapNum / dh**2)) * dt

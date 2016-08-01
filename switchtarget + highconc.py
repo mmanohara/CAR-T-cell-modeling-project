@@ -44,7 +44,7 @@ xcenter = 0.5
 ycenter = 0.5
 xvalues, yvalues = meshgrid(arange(0, 1.02, .01), arange(0, 1.02, .01))
 def initialize():
-    ‘’’look at the samelocbiCAR program for the usages of each of the variables.’’’
+    “””look at the samelocbiCAR program for the usages of each of the variables.”””
     global t1, t2, t3, c0, c1, c2, c3, cco, ctotal, nextt1, nextt2, nextt3, nextc0, nextc1, nextc2, nextc3, nextcco, nextctotal, ttotal, c0total, c1total, c2total, c3total, ccototal, tplot, c0plot, c1plot, c2plot, c3plot, ccoplot, step, check, tmax, c0max, c1max, c2max, c3max, ccomax, tpend, c0pend, c1pend, c2pend, c3pend, ccopend, steppend, c0xcenter, c0ycenter, c1xcenter, c1ycenter, c2xcenter, c2ycenter, c3xcenter, c3ycenter, ccoxcenter, ccoycenter
     t1 = zeros([n, n])#define each variable as an array. Note the 3 t-cell species that each target a different combination of antigens.
     t2 = zeros([n, n])
@@ -244,7 +244,7 @@ def update():
             c3LapNum = c3U + c3D + c3R + c3L - 4 * c3C
             ccoLapNum = ccoU + ccoD + ccoR + ccoL - 4 * ccoC
             #Be warned; the next few equations are HORRIFYINGLY LONG. Have a good day :)
-	    ‘’’look at samelocbiCAR for the equation terms’’’
+	    “””look at samelocbiCAR for the equation terms”””
             nextt1[x, y] = t1C + (-d * t1C - mu1 * (((t1R - t1L) / (2 * dh))*((c1R - c1L) / (2 * dh)) + ((t1U - t1D) / (2 * dh)) * ((c1U - c1D) / (2 * dh)) + t1C * (c1LapNum / dh**2)) - mu2 * (((t1R - t1L) / (2 * dh))*((c2R - c2L) / (2 * dh)) + ((t1U - t1D) / (2 * dh)) * ((c2U - c2D) / (2 * dh)) + t1C * (c2LapNum / dh**2)) - mu3 * (((t1R - t1L) / (2 * dh))*((c3R - c3L) / (2 * dh)) + ((t1U - t1D) / (2 * dh)) * ((c3U - c3D) / (2 * dh)) + t1C * (c3LapNum / dh**2))- muco * (((t1R - t1L) / (2 * dh))*((ccoR - ccoL) / (2 * dh)) + ((t1U - t1D) / (2 * dh)) * ((ccoU - ccoD) / (2 * dh)) + t1C * (ccoLapNum / dh**2)) + Dt * (t1LapNum/dh**2)) * dt
             nextt2[x, y] = t2C + (-d * t2C - mu4 * (((t2R - t2L) / (2 * dh))*((c1R - c1L) / (2 * dh)) + ((t2U - t2D) / (2 * dh)) * ((c1U - c1D) / (2 * dh)) + t2C * (c1LapNum / dh**2)) - mu5 * (((t2R - t2L) / (2 * dh))*((c2R - c2L) / (2 * dh)) + ((t2U - t2D) / (2 * dh)) * ((c2U - c2D) / (2 * dh)) + t2C * (c2LapNum / dh**2)) - mu6 * (((t2R - t2L) / (2 * dh))*((c3R - c3L) / (2 * dh)) + ((t2U - t2D) / (2 * dh)) * ((c3U - c3D) / (2 * dh)) + t2C * (c3LapNum / dh**2))- muco * (((t2R - t2L) / (2 * dh))*((ccoR - ccoL) / (2 * dh)) + ((t2U - t2D) / (2 * dh)) * ((ccoU - ccoD) / (2 * dh)) + t2C * (ccoLapNum / dh**2)) + Dt * (t2LapNum/dh**2)) * dt
             nextt3[x, y] = t3C + (-d * t3C - mu7 * (((t3R - t3L) / (2 * dh))*((c1R - c1L) / (2 * dh)) + ((t3U - t3D) / (2 * dh)) * ((c1U - c1D) / (2 * dh)) + t3C * (c1LapNum / dh**2)) - mu8 * (((t3R - t3L) / (2 * dh))*((c2R - c2L) / (2 * dh)) + ((t3U - t3D) / (2 * dh)) * ((c2U - c2D) / (2 * dh)) + t3C * (c2LapNum / dh**2)) - mu9 * (((t3R - t3L) / (2 * dh))*((c3R - c3L) / (2 * dh)) + ((t3U - t3D) / (2 * dh)) * ((c3U - c3D) / (2 * dh)) + t3C * (c3LapNum / dh**2))- muco * (((t3R - t3L) / (2 * dh))*((ccoR - ccoL) / (2 * dh)) + ((t3U - t3D) / (2 * dh)) * ((ccoU - ccoD) / (2 * dh)) + t3C * (ccoLapNum / dh**2)) + Dt * (t3LapNum/dh**2)) * dt            

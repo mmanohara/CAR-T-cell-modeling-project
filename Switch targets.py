@@ -11,11 +11,6 @@ represented in the program as c1, EGFR
 as c2, and Il13ra2 as c3. Images are
 to be saved and compiled into a movie file.
 """
-"""
-Things to do:
-Gaussian smoothen each rectangle to remove insane gradients.
-Then, play with parameters and analyze.
-"""
 import matplotlib
 matplotlib.use('TkAgg')
 from pylab import *
@@ -45,13 +40,12 @@ dt = 0.01#temporal resolution
 q =  25#T-cell distribution coefficient
 xvalues, yvalues = meshgrid(arange(0, 1.02, .01), arange(0, 1.02, .01))
 def initialize():
-    global t1, t2, t3, c0, c1, c2, c3, cco, ctotal,\#variables
-           nextt1, nextt2, nextt3, nextc0, nextc1, nextc2, nextc3, nextcco, nextctotal,\#variables at next timestep
-           ttotal, c0total, c1total, c2total, c3total, ccototal,\#total population sizes
-           tplot, c0plot, c1plot, c2plot, c3plot, ccoplot,\#arrays to be plotted(excludes ghost cells)
-           step, check,\#timestep and picture counter
-           tmax, c0max, c1max, c2max, c3max, ccomax,\#max values of each variable
-           tpend, c0pend, c1pend, c2pend, c3pend, ccopend, steppend#lists that are to be plotted
+    global t1, t2, t3, c0, c1, c2, c3, cco, ctotal,\
+           nextt1, nextt2, nextt3, nextc0, nextc1, nextc2, nextc3, nextcco, nextctotal,\
+           ttotal, c0total, c1total, c2total, c3total, ccototal,\
+	   tplot, c0plot, c1plot, c2plot, c3plot, ccoplot,\
+           tmax, c0max, c1max, c2max, c3max, ccomax,\
+           tpend, c0pend, c1pend, c2pend, c3pend, ccopend, steppend    
     t1 = zeros([n, n])#define variables as arrays. 
     t2 = zeros([n, n])
     t3 = zeros([n, n])
@@ -259,16 +253,19 @@ def update():
             #the below t-cell equations have the same format as above
             nextt2[x, y] = t2C + (-d * t2C - mu4 * (((t2R - t2L) / (2 * dh))*((c1R - c1L) / (2 * dh)) + ((t2U - t2D) / (2 * dh)) * ((c1U - c1D) / (2 * dh)) + t2C * (c1LapNum / dh**2)) - mu5 * (((t2R - t2L) / (2 * dh))*((c2R - c2L) / (2 * dh)) + ((t2U - t2D) / (2 * dh)) * ((c2U - c2D) / (2 * dh)) + t2C * (c2LapNum / dh**2)) - mu6 * (((t2R - t2L) / (2 * dh))*((c3R - c3L) / (2 * dh)) + ((t2U - t2D) / (2 * dh)) * ((c3U - c3D) / (2 * dh)) + t2C * (c3LapNum / dh**2))- muco * (((t2R - t2L) / (2 * dh))*((ccoR - ccoL) / (2 * dh)) + ((t2U - t2D) / (2 * dh)) * ((ccoU - ccoD) / (2 * dh)) + t2C * (ccoLapNum / dh**2)) + Dt * (t2LapNum/dh**2)) * dt
             nextt3[x, y] = t3C + (-d * t3C - mu7 * (((t3R - t3L) / (2 * dh))*((c1R - c1L) / (2 * dh)) + ((t3U - t3D) / (2 * dh)) * ((c1U - c1D) / (2 * dh)) + t3C * (c1LapNum / dh**2)) - mu8 * (((t3R - t3L) / (2 * dh))*((c2R - c2L) / (2 * dh)) + ((t3U - t3D) / (2 * dh)) * ((c2U - c2D) / (2 * dh)) + t3C * (c2LapNum / dh**2)) - mu9 * (((t3R - t3L) / (2 * dh))*((c3R - c3L) / (2 * dh)) + ((t3U - t3D) / (2 * dh)) * ((c3U - c3D) / (2 * dh)) + t3C * (c3LapNum / dh**2))- muco * (((t3R - t3L) / (2 * dh))*((ccoR - ccoL) / (2 * dh)) + ((t3U - t3D) / (2 * dh)) * ((ccoU - ccoD) / (2 * dh)) + t3C * (ccoLapNum / dh**2)) + Dt * (t3LapNum/dh**2)) * dt            
-            nextc0[x, y] = c0C + (a * c0C * (1 - (ctotalC)/K)\#logistic growth 
-                           + Dc * (c0LapNum / dh**2)) * dt#diffusion
-            nextc1[x, y] = c1C + (a * c1C * (1 - (ctotalC)/K)\
-                           - b1 * c1C * (t1C + t3C) \#predation
-                           + Dc * (c1LapNum / dh**2)) * dt#diffusion
+            nextc0[x, y] = c0C + (a * c0C * (1 - (ctotalC)/K)
+					#logistic growth 
+                           + Dc * (c0LapNum / dh**2)) * dt
+					#diffusion
+            nextc1[x, y] = c1C + (a * c1C * (1 - (ctotalC)/K)
+                           - b1 * c1C * (t1C + t3C) 
+				#predation
+                           + Dc * (c1LapNum / dh**2)) * dt
             nextc2[x, y] = c2C + (a * c2C * (1 - (ctotalC)/K) - b2 * c2C * (t2C + t3C) + Dc * (c2LapNum / dh**2)) * dt
             nextc3[x, y] = c3C + (a * c3C * (1 - (ctotalC)/K) - b3 * c3C * (t1C + t2C) + Dc * (c3LapNum / dh**2)) * dt
             nextcco[x, y] = ccoC + (a * ccoC * (1 - (ctotalC)/K) - bd * ccoC * (t1C + t2C + t3C) + Dc * (ccoLapNum/dh**2)) * dt
             nextctotal[x, y] = c0C + c1C + c2C + c3C + ccoC#sum cancer populations to get total
-    ttotal = 0#reset total populations to resum them
+    ttotal = 0#reset total populations to sum them up
     c0total = 0
     c1total = 0
     c2total = 0
