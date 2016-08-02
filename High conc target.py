@@ -35,10 +35,10 @@ xcenter = 0.5
 ycenter = 0.5
 xvalues, yvalues = meshgrid(arange(0, 1.02, .01), arange(0, 1.02, .01))
 def initialize():
-    “””
+    """
     variables are the same as in samelocbiCAR. The new variables
 (c0xcenter and the others) are all the x and y coordinates of where the max value of cancer occurs.
-    “””
+    """
     global t, c0, c1, c2, c3, cco, ctotal, nextt, nextc0, nextc1, nextc2, nextc3, nextcco, nextctotal, ttotal, c0total, c1total, c2total, c3total, ccototal, tplot, c0plot, c1plot, c2plot, c3plot, ccoplot, step, check, tmax, c0max, c1max, c2max, c3max, ccomax, tpend, c0pend, c1pend, c2pend, c3pend, ccopend, steppend, c0xcenter, c0ycenter, c1xcenter, c1ycenter, c2xcenter, c2ycenter, c3xcenter, c3ycenter, ccoxcenter, ccoycenter
     t1 = zeros([n, n])#define variables as arrays
     c0 = zeros([n, n])
