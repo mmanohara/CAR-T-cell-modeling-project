@@ -241,7 +241,7 @@ def update():
             c2LapNum = c2U + c2D + c2R + c2L - 4 * c2C
             c3LapNum = c3U + c3D + c3R + c3L - 4 * c3C
             ccoLapNum = ccoU + ccoD + ccoR + ccoL - 4 * ccoC
-            '''comments are above respective equation termm'''
+            '''comments are above respective equation terms'''
                             #decay rate of t-cells
             nextt[x, y] = tC + (-d * tC 
                           #transport equations
