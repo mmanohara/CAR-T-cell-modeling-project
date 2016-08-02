@@ -241,7 +241,7 @@ def update():
             c3LapNum = c3U + c3D + c3R + c3L - 4 * c3C
             ccoLapNum = ccoU + ccoD + ccoR + ccoL - 4 * ccoC
             #Be warned; the next few equations are HORRIFYINGLY LONG. Have a good day :)
-	    ‘’’The comments are below their respective equation terms.’’’
+	    '''The comments are below their respective equation terms.'''
             nextt1[x, y] = t1C + (-d * t1C
 				#decay
                            - mu1 * (((t1R - t1L) / (2 * dh))*((c1R - c1L) / (2 * dh)) + ((t1U - t1D) / (2 * dh)) * ((c1U - c1D) / (2 * dh)) + t1C * (c1LapNum / dh**2))
